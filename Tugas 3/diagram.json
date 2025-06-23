@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "author": "Muhammad Farhan",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -3.2,
+      "left": 245.6,
+      "attrs": { "pins": "i2c" }
+    },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -134.1, "left": 129, "attrs": {} },
+    { "type": "wokwi-photoresistor-sensor", "id": "ldr1", "top": 32, "left": -287.2, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "lcd1:GND", "esp:GND.2", "black", [ "h0" ] ],
+    [ "ldr1:GND", "esp:GND.1", "black", [ "h48", "v95.6" ] ],
+    [ "dht1:VCC", "ldr1:VCC", "red", [ "h-163.2", "v67.2" ] ],
+    [ "lcd1:SDA", "esp:21", "green", [ "h-48", "v29" ] ],
+    [ "lcd1:SCL", "esp:22", "violet", [ "h-38.4", "v-9.3" ] ],
+    [ "esp:5V", "lcd1:VCC", "red", [ "v38.4", "h139.39", "v-201.7" ] ],
+    [ "dht1:SDA", "esp:19", "green", [ "v0" ] ],
+    [ "ldr1:AO", "esp:35", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
